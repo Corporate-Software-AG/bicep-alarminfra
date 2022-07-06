@@ -1,0 +1,19 @@
+# Install Azure CLI
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+# Update Bicep
+az bicep install && az bicep upgrade
+
+export subscriptionName='MPN100'
+
+az login --use-device-code
+az account show
+az account set --subscription $subscriptionName
+az group create --location switzerlandnorth --name 'test-bicep-alarm'
+az deployment group what-if --template-file main.bicep --resource-group 'test-bicep-alarm'
+az deployment group create --template-file main.bicep --resource-group 'test-bicep-alarm'
+
+npm i -g azure-functions-core-tools@3 --unsafe-perm true
+
+func azure functionapp fetch-app-settings <func-name>
+func azure storage fetch-connection-string <strg-name>
+func azure functionapp publish <func-name>

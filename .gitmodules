@@ -1,0 +1,3 @@
+[submodule "azfunction-js-alarm"]
+	path = azfunction-js-alarm
+	url = https://github.com/Corporate-Software-AG/azfunction-js-alarm
