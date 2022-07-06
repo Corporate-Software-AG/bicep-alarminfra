@@ -12,6 +12,9 @@ az group create --location switzerlandnorth --name 'test-bicep-alarm'
 az deployment group what-if --template-file main.bicep --resource-group 'test-bicep-alarm'
 az deployment group create --template-file main.bicep --resource-group 'test-bicep-alarm'
 
+#az iot hub device-identity create -n "<iothub-name>" -d "<device-name>" --ee
+#az iot hub device-identity show -n "<iothub-name>" -d "<device-name>"
+
 git submodule update --init
 #npm install typescript 
 #npm i -g azure-functions-core-tools@4 --unsafe-perm true
