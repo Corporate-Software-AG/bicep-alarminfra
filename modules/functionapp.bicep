@@ -60,7 +60,11 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
           value: '~16'
         }
         {
-          name: 'IOTHUB_CONNECTION_STRING'
+          name: 'IOT_DEVICE_CONNECTION_STRING'
+          value: '<TO ADD>'
+        }
+        {
+          name: 'IOT_DEVICE_NAME'
           value: '<TO ADD>'
         }
         {
