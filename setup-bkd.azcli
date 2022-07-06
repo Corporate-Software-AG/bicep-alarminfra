@@ -1,13 +1,21 @@
 export subscriptionName='BFB-TTAlarm-SUBS'
 export resourceGroupName='BFB-TTAlarm-RSGR-100'
 export botServiceName='BFB-TTAlarm-BOTS-001'
-export functionAppName='BFB-TTAlarm-FUAP-001'
-export iotHubName='BFB-TTAlarm-IOTH-001'
-export appServPlanName='BFB-TTAlarm-ASPL-001'
-export logAnalyticsName='BFB-TTAlarm-LAWS-001'
-export appInsightsName='BFB-TTAlarm-AINS-001'
-export strAccName='bfbttalarmstac001'
 
 az account set --subscription $subscriptionName
-az deployment group what-if --template-file main.bicep --resource-group $resourceGroupName
-az deployment group create --template-file main.bicep --resource-group $resourceGroupName
+az deployment group what-if --template-file main.bicep --resource-group $resourceGroupName --parameters @parameters-bkd.json
+az deployment group create --template-file main.bicep --resource-group $resourceGroupName --parameters @parameters-bkd.json
+
+cd azfunction-js-alarm
+git submodule update --init
+#npm install typescript 
+#npm i -g azure-functions-core-tools@4 --unsafe-perm true
+
+npm install
+npm run build
+
+export functionAppName='BFB-TTAlarm-FUAP-001'
+export strAccName='bfbttalarmstac001'
+func azure functionapp fetch-app-settings $functionAppName
+func azure storage fetch-connection-string $strAccName
+func azure functionapp publish $functionAppName

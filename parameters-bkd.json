@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "iotHubName": {
+            "value": "BFB-TTAlarm-IOTH-001"
+        },
+        "functionAppName": {
+            "value": "BFB-TTAlarm-FUAP-001"
+        },
+        "appSrvPlanName": {
+            "value": "BFB-TTAlarm-ASPL-001"
+        },
+        "logAnalyticsName": {
+            "value": "BFB-TTAlarm-LAWS-001"
+        },
+        "appInsightsName": {
+            "value": "BFB-TTAlarm-AINS-001"
+        },
+        "strgAccName": {
+            "value": "bfbttalarmstac001"
+        }
+    }
+}

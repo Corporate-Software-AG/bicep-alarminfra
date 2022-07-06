@@ -3,8 +3,6 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 # Update Bicep
 az bicep install && az bicep upgrade
 
-git submodule update --init
-
 export subscriptionName='MPN100'
 
 az login --use-device-code
@@ -14,7 +12,12 @@ az group create --location switzerlandnorth --name 'test-bicep-alarm'
 az deployment group what-if --template-file main.bicep --resource-group 'test-bicep-alarm'
 az deployment group create --template-file main.bicep --resource-group 'test-bicep-alarm'
 
-npm i -g azure-functions-core-tools@3 --unsafe-perm true
+git submodule update --init
+#npm install typescript 
+#npm i -g azure-functions-core-tools@4 --unsafe-perm true
+
+npm install
+npm run build
 
 func azure functionapp fetch-app-settings <func-name>
 func azure storage fetch-connection-string <strg-name>
