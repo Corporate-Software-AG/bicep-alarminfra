@@ -19,10 +19,11 @@ resource appSrvPlan 'Microsoft.Web/serverfarms@2021-03-01' = {
   location: location
   kind: 'linux'
   sku: {
-    name: 'Y1'
-    tier: 'Dynamic'
+    name: 'B1'
   }
-  properties: {}
+  properties: {
+    reserved: true
+  }
 }
 
 resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
@@ -35,6 +36,8 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
   properties: {
     serverFarmId: appSrvPlan.id
     siteConfig: {
+      alwaysOn: true
+      linuxFxVersion: 'NODE|16'
       appSettings: [
         {
           name: 'AzureWebJobsStorage'
@@ -50,7 +53,7 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~3'
+          value: '~4'
         }
         {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'
